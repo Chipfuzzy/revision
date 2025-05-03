@@ -26,18 +26,33 @@ display_surface.blit(temple_run, (90,510))
 
 font = pygame.font.SysFont('arial', 36)
 
-text = font.render('angry birds',True,(0,0,0))
-text1 = font.render('candy crush',True,(0,0,0))
-text2 = font.render('subway surfers',True,(0,0,0))
-text3 = font.render('temple run',True,(0,0,0))
+text = font.render('angry birds',True,(255,255,255))
+text1 = font.render('candy crush',True,(255,255,255))
+text2 = font.render('subway surfers',True,(255,255,255))
+text3 = font.render('temple run',True,(255,255,255))
 display_surface.blit(text,(350,100))
-display_surface.blit(text,(350,200))
-display_surface.blit(text,(350,300))
-display_surface.blit(text,(350,400))
-
-
+display_surface.blit(text1,(350,200))
+display_surface.blit(text2,(350,300))
+display_surface.blit(text3,(350,400))
+pygame.display.update()
+                     
 running = True
 while running:
+    event = pygame.event.poll()
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
+            pygame.quit()
+    
+    if event.type == pygame.MOUSEBUTTONDOWN:
+        pos = pygame.mouse.get_pos()
+        pygame.draw.circle(display_surface,
+          (255,255,255) ,(pos), 20, 0)
+        pygame.display.update()
+    elif event.type == pygame.MOUSEBUTTONUP:
+        pos2 = pygame.mouse.get_pos()
+        pygame.draw.line(display_surface,(255,255,255), (pos), (pos2),5)
+        pygame.draw.circle(display_surface,
+          (255,255,255) ,(pos2), 20, 0)
+        pygame.display.update()
+        
